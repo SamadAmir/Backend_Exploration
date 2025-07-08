@@ -4,9 +4,8 @@ const uri = process.env.MONGODB_URL
 
 async function connectDB() {
     try{
-    const conn = await mongoose.connect(uri,{
-          useUnifiedTopology: true
-    })
+ await mongoose.connect(uri);
+
     console.log("MongoDB connected")
 } catch (err)
 {
