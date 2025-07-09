@@ -2,30 +2,7 @@ import user from "../models/User.js";
 import bcrypt from "bcrypt"
 import { generateToken } from "../utils/generateWebtoken.js";
 
-export const register = async (req,res)=>{
-    try{
-        const {name,email,password} = req.body
-        const existingUser = await user.findOne({email})
-        if(existingUser)
-        {
-           return res.status(400).json({message:"User already exist"})
-        }
-        const hashedpassword = await bcrypt.hash(password,10)
 
-        const newUser = await user.create({
-            name,email,password:hashedpassword
-        })
-        res.status(201).json({
-            _id:newUser._id,
-            name:newUser.name,
-            token:generateToken(newUser._id)
-        })
-
-    }
-    catch (err){
-        res.status(400).json({message:err.message})
-    }
-}
 
 export const getUser = async (req,res)=>{
     try{

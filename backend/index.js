@@ -4,6 +4,7 @@ import connectDB from './config/db.js';
 
 //routes
 import userRoute from './routes/userRoute.js';
+import authRoute from './routes/authRoute.js'
 
 //environment variables
 const uri = process.env.MONGODB_URL
@@ -16,6 +17,7 @@ connectDB()
 app.use(express.json());
 
 app.use('/api/users',userRoute)
+app.use('/api/auth',authRoute)
 
 app.get('/',(req,res)=>{
     res.send("Hello world!")
